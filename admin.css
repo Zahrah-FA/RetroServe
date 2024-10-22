@@ -1,0 +1,8 @@
+nav ul {
+    display: block;
+    list-style-type: none;
+}
+
+.sidebar nav ul {
+    list-style-type: none;
+}
