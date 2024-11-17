@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const registerContainer = document.getElementById('registerContainer');
     const showRegisterLink = document.getElementById('showRegister');
     const showLoginLink = document.getElementById('showLogin');
+    const message = localStorage.getItem('snackbarMessage');
 
     // Toggle between Login and Register Forms
     if (showRegisterLink && showLoginLink) {
@@ -30,24 +31,30 @@ document.addEventListener('DOMContentLoaded', function() {
             snackbar.className = snackbar.className.replace("show", "");
         }, 3000); // Hide after 3 seconds
     }
+    // Snackbar dari pesan login atau registrasi berhasil
+    if (message) {
+        showSnackbar(message);
+        localStorage.removeItem('snackbarMessage'); // Hapus setelah ditampilkan
+    }
+
 
     // Handle Login Form Submission
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('loginName').value;
-            const password = document.getElementById('loginPassword').value;
+    // if (loginForm) {
+    //     loginForm.addEventListener('submit', function(e) {
+    //         e.preventDefault();
+    //         const name = document.getElementById('loginName').value;
+    //         const password = document.getElementById('loginPassword').value;
 
-            // Simulate login check (you would replace this with actual server-side validation)
-            if (name === "admin" && password === "1234") {
-                // Save success message in localStorage
-                localStorage.setItem('snackbarMessage', 'Login successful!');
-                window.location.href = 'dashboard.html'; // Redirect to dashboard
-            } else {
-                showSnackbar('Login failed! Please check your credentials.');
-            }
-        });
-    }
+    //         // Simulate login check (you would replace this with actual server-side validation)
+    //         if (name === "admin" && password === "1234") {
+    //             // Save success message in localStorage
+    //             localStorage.setItem('snackbarMessage', 'Login successful!');
+    //             window.location.href = 'dashboard.php'; // Redirect to dashboard
+    //         } else {
+    //             showSnackbar('Login failed! Please check your credentials.');
+    //         }
+    //     });
+    // }
 
     // Handle Register Form Submission
     if (registerForm) {
@@ -69,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Show snackbar message on dashboard or any other page after redirect
-    const message = localStorage.getItem('snackbarMessage');
     if (message) {
         showSnackbar(message);
         localStorage.removeItem('snackbarMessage'); // Clear message after displaying

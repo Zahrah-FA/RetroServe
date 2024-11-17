@@ -1,12 +1,21 @@
+<?php
+session_start();
+if (!isset($_SESSION['loginName'])) {
+    header('Location: login.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - RestroServe</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
 </head>
+
 <body>
     <div class="dashboard">
         <aside class="sidebar">
@@ -14,10 +23,10 @@
             <nav>
                 <ul style="display: block;">
                     <li><a href="#" class="active" data-section="dashboard">Dashboard</a></li>
-                    <li><a href="menu.html">Menu</a></li>
-                    <li><a href="order.html">Order</a></li>
-                    <li><a href="report.html">Report</a></li>
-                    <li><a href="login.html">Logout</a></li>
+                    <li><a href="Menu/menu.php">Menu</a></li>
+                    <li><a href="Order/order.php">Order</a></li>
+                    <li><a href="report/report.php">Report</a></li>
+                    <li><a href="logout.php">Logout</a></li> <!-- Logout -->
                 </ul>
             </nav>
         </aside>
@@ -26,8 +35,8 @@
             <header>
                 <input type="search" placeholder="Search...">
                 <div class="user-menu">
-                    <img src="" alt="User Avatar" class="avatar">
-                    <span class="username">John Doe</span>
+                    <img src="foto/user.png" alt="User Avatar" class="avatar">
+                    <span class="username"><?php echo $_SESSION['loginName']; ?></span> 
                 </div>
             </header>
 
@@ -114,6 +123,7 @@
         </main>
     </div>
     <div id="snackbar"></div>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>

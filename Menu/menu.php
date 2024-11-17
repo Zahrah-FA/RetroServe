@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Management - RestroServe</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
     <div class="dashboard">
@@ -13,11 +13,11 @@
             <div class="logo">RestroServe</div>
             <nav>
                 <ul>
-                    <li><a href="#" class="active" data-section="dashboard">Dashboard</a></li>
-                    <li><a href="menu.html">Menu</a></li>
-                    <li><a href="order.html">Order</a></li>
-                    <li><a href="report.html">Report</a></li>
-                    <li><a href="login.html">Logout</a></li>
+                    <li><a href="../dashboard.php" class="active" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="menu.php">Menu</a></li>
+                    <li><a href="../Order/order.php">Order</a></li>
+                    <li><a href="../report/report.php">Report</a></li>
+                    <li><a href="../logout.php">Logout</a></li>
                 </ul>
             </nav>
         </aside>
@@ -76,6 +76,6 @@
         </main>
     </div>
 
-    <script src="menu.js"></script>
+    <script src="../js/menu.js"></script>
 </body>
 </html>
