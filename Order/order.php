@@ -1,3 +1,7 @@
+<?php
+session_start();
+include '../koneksi.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +17,9 @@
             <div class="logo">RestroServe</div>
             <nav>
                 <ul>
-                    <li><a href="../dashboard.php" class="active" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="../dashboard.php">Dashboard</a></li>
                     <li><a href="../Menu/menu.php">Menu</a></li>
-                    <li><a href="order.php">Order</a></li>
-                    <li><a href="../report/report.php">Report</a></li>
+                    <li><a href="order.php" class="active">Order</a></li>
                     <li><a href="../logout.php">Logout</a></li>
                 </ul>
             </nav>
@@ -26,64 +29,57 @@
             <header>
                 <input type="search" placeholder="Search...">
                 <div class="user-menu">
-                    <img src="/placeholder.svg?height=40&width=40" alt="User Avatar" class="avatar">
-                    <span class="username">John Doe</span>
+                    <img src="../foto/user.png" alt="User Avatar" class="avatar">
+                    <span class="username"><?php echo $_SESSION['username']; ?></span>
                 </div>
             </header>
 
             <section id="order-section" class="order-content">
                 <h1>Order Management</h1>
-                <button id="add-order-btn" class="btn-primary">Add New Order</button>
-                <div id="order-form" style="display: none;">
-                    <h2 id="order-form-title">Add New Order</h2>
-                    <form id="order-item-form">
-                        <input type="hidden" id="order-id">
-                        <div class="form-group">
-                            <label for="order-customer">Customer Name:</label>
-                            <input type="text" id="order-customer" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="order-items">Items:</label>
-                            <select id="order-items" multiple required>
-                                <!-- Menu items will be dynamically added here -->
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="order-total">Total:</label>
-                            <input type="number" id="order-total" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="order-status">Status:</label>
-                            <select id="order-status" required>
-                                <option value="pending">Pending</option>
-                                <option value="preparing">Preparing</option>
-                                <option value="ready">Ready</option>
-                                <option value="delivered">Delivered</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn-primary">Save Order</button>
-                        <button type="button" id="cancel-order-btn" class="btn-secondary">Cancel</button>
-                    </form>
-                </div>
+                <button id="add-order-btn" class="btn-primary"><a href="order-entry.php">Add New Order</a></button>
+                <a href="order-report.php" class="btn-secondary">Generate Report</a>
                 <table id="order-table">
                     <thead>
                         <tr>
                             <th>Order ID</th>
                             <th>Customer</th>
-                            <th>Items</th>
+                            <th>Item</th>
+                            <th>Quantity</th>
                             <th>Total</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="order-items">
-                        <!-- Order items will be dynamically added here -->
+                        <?php
+                        $sql = "SELECT o.*, m.nama as item_name, m.price 
+                                FROM tb_order o 
+                                JOIN tb_menu m ON o.item = m.id";
+                        $result = mysqli_query($koneksi, $sql);
+                        if (mysqli_num_rows($result) == 0) {
+                            echo "<tr><td colspan='7' align='center'>No Orders</td></tr>";
+                        }
+                        while ($data = mysqli_fetch_assoc($result)) {
+                            echo "
+                            <tr>
+                                <td>{$data['id']}</td>
+                                <td>{$data['customer']}</td>
+                                <td>{$data['item_name']}</td>
+                                <td>{$data['quantity']}</td>
+                                <td>Rp " . number_format($data['total'], 0, ',', '.') . "</td>
+                                <td>{$data['status']}</td>
+                                <td>
+                                    <a class='btn-secondary' href='order-edit.php?id={$data['id']}'>Edit</a> | 
+                                    <a class='btn-secondary' href='order-hapus.php?id={$data['id']}'>Delete</a>
+                                </td>
+                            </tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
             </section>
         </main>
     </div>
-
-    <script src="../js/order.js"></script>
 </body>
 </html>
+

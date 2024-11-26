@@ -39,7 +39,6 @@ session_start();
                     <li><a href="../dashboard.php" class="active" data-section="dashboard">Dashboard</a></li>
                     <li><a href="menu.php">Menu</a></li>
                     <li><a href="../Order/order.php">Order</a></li>
-                    <li><a href="../report/report.php">Report</a></li>
                     <li><a href="../logout.php">Logout</a></li>
                 </ul>
             </nav>

@@ -36,16 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 day: 'numeric' 
             });
         }
-
-        // Simulate updating dashboard data (this would normally come from the server)
-        function updateDashboardData() {
-            const totalSales = Math.floor(Math.random() * 1000000);
-            document.querySelector('.stat-value').textContent = `Rp ${totalSales.toLocaleString('id-ID')}`;
-        }
-
-        // Call updateDashboardData every 5 seconds to simulate real-time updates
-        updateDashboardData();
-        setInterval(updateDashboardData, 5000);
     }
 
     // Add active class to current nav item (dashboard sidebar)
