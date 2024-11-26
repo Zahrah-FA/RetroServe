@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['loginName'])) {
-    header('Location: login.php');
-    exit();
-}
+// if (!isset($_SESSION['username'])) {
+//     header('Location: login.php');
+//     exit();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +36,7 @@ if (!isset($_SESSION['loginName'])) {
                 <input type="search" placeholder="Search...">
                 <div class="user-menu">
                     <img src="foto/user.png" alt="User Avatar" class="avatar">
-                    <span class="username"><?php echo $_SESSION['loginName']; ?></span> 
+                    <span class="username"><?php echo $_SESSION['username']; ?></span> 
                 </div>
             </header>
 

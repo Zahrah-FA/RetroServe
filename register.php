@@ -24,16 +24,14 @@
 
     <main style="background-image: url(foto/latar_belakang.png);background-attachment: fixed;">
         <div class="auth-container">
-            <h1>Login</h1>
-            <form action="login-proses.php" method="post">
-                <input type="text" name="username" id="loginName" placeholder="Name" required>
-                <input type="password" name="password" id="loginPassword" placeholder="Password" required>
-                <button type="submit" class="btn-primary" name="login" >Login</button>
+            <h1>Register</h1>
+            <form action="register-proses.php" method="post">
+                <input type="text" id="registerName" placeholder="Name" name="username" required>
+                <input type="password" id="registerPassword" placeholder="Password" name="password" required>
+                <input type="email" id="registerEmail" placeholder="Email" name="email" required>
+                <button type="submit" class="btn-primary" name="register" >Register</button>
             </form>
-            <?php if (isset($errorMessage)) {
-                echo "<p style='color:red;'>$errorMessage</p>";
-            } ?>
-            <p>Don't have an account? <a href="register.php" id="showRegister">Register</a></p>
+            <p>Already have an account? <a href="login.php" id="showLogin">Login</a></p>
         </div>
     </main>
 

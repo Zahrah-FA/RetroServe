@@ -132,7 +132,6 @@ nav ul li a {
     background-size: cover;
     background-position: center;
     min-height: 100vh;
-    padding-top: 60px; /* Account for fixed header */
 }
 
 .auth-page main {
